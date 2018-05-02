@@ -1,29 +1,28 @@
-######################################################################    
-# Author: IK3D -- Issanou Kamardine                                                 
-# License: GPL v3                                                  
+######################################################################
+# Author: IK3D -- Issanou Kamardine
+# License: GPL v3
 ######################################################################
 
 
 bl_info = {
-    "name": "Sculpt Broshes",
-    "author": "IK3D",
+    "name": "Sculpt Brushes",
     "version": (0, 7),
     "location": "View 3D > Sculpt mod > Brushes",
     "description": "UI Palette sculpt brush",
     "category": "Sculpting"}
-    
+
 
 if "bpy" in locals():
     import imp
     imp.reload(main_brush)
-    
+
 
 import bpy
 from bpy.props import *
 import os
 
 root = bpy.utils.script_path_user()
-sep = os.sep
+sep = os.path.sep
 
 
 #Load script main_brush.py
@@ -36,7 +35,7 @@ class ReloadOperator(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.reload_operator"
     bl_label = "Reload Brushes"
- 
+
     def execute(self, context):
         if bpy.context.mode == 'SCULPT':
             execscript()
@@ -45,21 +44,21 @@ class ReloadOperator(bpy.types.Operator):
             execscript()
         return {'FINISHED'}
 
-    
+
 #Load script main_brush.py
 def gosculpt():
     bpy.ops.script.python_file_run( filepath = lien )
 
 
- 
-#layout 
+
+#layout
 class BrushPanel(bpy.types.Panel):
     bl_label = "Brushes"
     bl_idname = "Brushes"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'TOOLS'
     bl_category = "Brushes"
-    
+
 
     def draw(self, context):
         if bpy.context.mode == 'SCULPT':
@@ -74,7 +73,7 @@ class BrushPanel(bpy.types.Panel):
             row.operator("object.reload_operator", text= 'Sculpt Mode', icon = 'SCULPTMODE_HLT')
 
 
-       
+
 
 def register():
     bpy.utils.register_class(ReloadOperator)
@@ -87,7 +86,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-
-
-
-    

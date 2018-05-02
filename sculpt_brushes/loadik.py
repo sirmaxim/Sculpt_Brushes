@@ -3,21 +3,21 @@ import os
 
 
 root = bpy.utils.script_path_user()
-sep = os.sep
+sep = os.path.sep
 
 
 #check if IK in data
-ikbrushexist = False  
+ikbrushexist = False
 for item in bpy.data.brushes:
     if item.name.endswith("IK"):
-        ikbrushexist = True  
-    
-    
+        ikbrushexist = True
+
+
 #Load / reload IK Brushes
 #Libraries Brushes
-if ikbrushexist == False:  
+if ikbrushexist == False:
     filepath = root + sep + "addons" + sep + "sculpt_brushes" + sep + "Brushes_IK.blend"
-    #Load IK Brushes 
+    #Load IK Brushes
     if bpy.context.scene:
         with bpy.data.libraries.load(filepath) as (data_from, data_to):
             data_to.brushes = [name for name in data_from.brushes if name.endswith("IK")]
@@ -41,7 +41,7 @@ def execscript():
 #remove texturs
 for textures in bpy.data.textures:
     if not textures.users:
-        bpy.data.textures.remove(textures)                
+        bpy.data.textures.remove(textures)
 
 
 
