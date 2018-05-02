@@ -6,6 +6,7 @@
 
 bl_info = {
     "name": "Sculpt Brushes",
+    "author": "IK3D",
     "version": (0, 7),
     "location": "View 3D > Sculpt mod > Brushes",
     "description": "UI Palette sculpt brush",
